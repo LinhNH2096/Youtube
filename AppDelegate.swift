@@ -13,6 +13,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         print("App - Did Finish launching With Options")
         UINavigationBar.appearance().barTintColor = UIColor.rgb(230, 31, 32)
+        
+        ///Remove shadow image of navigation bar
+        UINavigationBar.appearance().shadowImage = UIImage()
+//        UINavigationBar.appearance().setBackgroundImage(UIImage(), for: UIBarMetrics.default)
         return true
     }
 

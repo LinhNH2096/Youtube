@@ -8,16 +8,8 @@
 import UIKit
 
 /// Custom Video Collection View Cell
-class VideoCell: UICollectionViewCell {
+class VideoCell: BaseCell {
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        setUpView()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
     ///Subview - Thumbnail Image
     let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
@@ -65,8 +57,8 @@ class VideoCell: UICollectionViewCell {
         return textView
     }()
     
-    func setUpView() {
-        
+    override func setupCell() {
+        super.setupCell()
         ///Add subviews
         addSubview(thumbnailImageView)
         addSubview(separator)
