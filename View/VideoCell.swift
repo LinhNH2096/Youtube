@@ -1,40 +1,11 @@
 //
-//  ViewController.swift
+//  VideoCell.swift
 //  YoutubePhake
 //
-//  Created by Nguyễn Hồng Lĩnh on 27/03/2021.
+//  Created by Nguyễn Hồng Lĩnh on 28/03/2021.
 //
 
 import UIKit
-
-class HomeController: UICollectionViewController, UICollectionViewDelegateFlowLayout{
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
-        navigationItem.title = "Home"
-        collectionView.backgroundColor = UIColor.white
-        collectionView.register(VideoCell.self, forCellWithReuseIdentifier: "cellId")
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 5
-    }
-    
-    override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellId", for: indexPath)
-        return cell
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        return CGSize(width: self.view.frame.size.width, height: 200)
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
-        return 0
-    }
-}
-
 
 /// Custom Video Collection View Cell
 class VideoCell: UICollectionViewCell {
@@ -50,28 +21,36 @@ class VideoCell: UICollectionViewCell {
     ///Subview - Thumbnail Image
     let thumbnailImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.blue
+        imageView.image = UIImage(named: "son_tung_mtp_chung_ta_cua_hien_tai")
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
         return imageView
     }()
     
     ///Subview - Separator Line
     let separator: UIView = {
         let uiView = UIView()
-        uiView.backgroundColor = UIColor.black
+        uiView.backgroundColor = UIColor(red: 230/255, green: 230/255, blue: 230/255, alpha: 1)
         return uiView
     }()
     
     ///Subview - User image profile
     let userImageProfile: UIImageView = {
         let imageView = UIImageView()
-        imageView.backgroundColor = UIColor.red
+        imageView.image = UIImage(named: "son_tung_mtp_profile")
+        imageView.contentMode = .scaleAspectFill
+        imageView.layer.cornerRadius = 22
+        imageView.layer.masksToBounds = true
         return imageView
     }()
     
     ///Subview - Title video
     let titleVideo: UILabel = {
        let label = UILabel()
-        label.backgroundColor = UIColor.yellow
+        label.text = "SƠN TÙNG M-TP | CHÚNG TA CỦA HIỆN TẠI | OFFICIAL MUSIC VIDEO"
+        label.font = label.font.withSize(14)
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         label.translatesAutoresizingMaskIntoConstraints = false
         return label
     }()
@@ -79,7 +58,9 @@ class VideoCell: UICollectionViewCell {
     ///Subview - Subtitle video
     let subTitleVideo: UITextView = {
        let textView = UITextView()
-        textView.backgroundColor = UIColor.gray
+        textView.text = "Sơn Tùng M-TP Official • 70M views • 3 months ago"
+        textView.textContainerInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
+        textView.textColor = UIColor.lightGray
         textView.translatesAutoresizingMaskIntoConstraints = false
         return textView
     }()
@@ -125,22 +106,8 @@ class VideoCell: UICollectionViewCell {
         addConstraint(NSLayoutConstraint(item: subTitleVideo, attribute: .right, relatedBy: .equal, toItem: thumbnailImageView, attribute: .right, multiplier: 1, constant: 0))
         
         ///Subtitle video  - Height constraint
-        addConstraint(NSLayoutConstraint(item: subTitleVideo, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 18))
+        addConstraint(NSLayoutConstraint(item: subTitleVideo, attribute: .height, relatedBy: .equal, toItem: self, attribute: .height, multiplier: 0, constant: 20))
     }
-    
-    ///Func custom add constraint
-    func addConstraintWithFormat(_ format: String, views: UIView...) {
-        var viewsDictionary = [String: UIView]()
         
-        for (index, view) in views.enumerated() {
-            let keyview = "v\(index)"
-            ///Turn off auto create constraint of view cause constraints were customed
-            view.translatesAutoresizingMaskIntoConstraints = false
-            viewsDictionary[keyview] = view
-        }
-        
-        addConstraints(NSLayoutConstraint.constraints(withVisualFormat: format, options: NSLayoutConstraint.FormatOptions(), metrics: nil, views: viewsDictionary))
-    }
-    
 }
 

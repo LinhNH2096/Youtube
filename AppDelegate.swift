@@ -10,10 +10,9 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         print("App - Did Finish launching With Options")
+        UINavigationBar.appearance().barTintColor = UIColor.rgb(230, 31, 32)
         return true
     }
 
